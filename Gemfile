@@ -25,6 +25,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use 12factor speed up page load
 gem 'rails_12factor', group: :production
+# Add Bootstrap 
+gem 'bootstrap-sass', '~> 3.3.5.1'
+gem 'sprockets'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -37,7 +40,9 @@ gem 'rails_12factor', group: :production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # gem 'byebug'
+  # Use rspec-rails as well
+  gem 'rspec-rails'
 end
 
 group :development do
