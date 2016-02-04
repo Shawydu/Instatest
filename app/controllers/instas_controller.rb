@@ -5,6 +5,13 @@ class InstasController < ApplicationController
 		
 	end
 
+	def show
+		@gram = Gram.find_by_id(params[:id])
+		if !@gram.present?
+			render status: :not_found
+		end
+	end
+
 	def new
 		@gram = Gram.new
 	end

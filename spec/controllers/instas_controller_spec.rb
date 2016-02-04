@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe InstasController, type: :controller do
+	describe "instas#show action" do
+		it "should successfully show the page if insta is found" do
+			gram = FactoryGirl.create(:gram)
+			get :show, id: gram.id
+			expect(response).to have_http_status(:success)
+		end
+
+		it "should return a 404 error if the insta is not found" do
+			get :show, id: 'TACOCAT'
+			expect(response).to have_http_status(:not_found)
+		end
+	end
+
 	describe "instas#index action" do
 		it "should successfully show the page" do
 			get :index
@@ -15,11 +28,7 @@ RSpec.describe InstasController, type: :controller do
 		end
 
 	    it "should successfully show the new form" do
-	    	user = User.create(
-				email: 	'fakeuser@gmail.com',
-				password: 	'secretPassword',
-				password_confirmation: 	'secretPassword'
-			)
+	    	user = FactoryGirl.create(:user)
 			sign_in user
 			
 		    get :new
@@ -34,11 +43,7 @@ RSpec.describe InstasController, type: :controller do
 		end
 
 		it "should successfully submit the new form" do
-			user = User.create(
-				email: 	'fakeuser@gmail.com',
-				password: 	'secretPassword',
-				password_confirmation: 	'secretPassword'
-			)
+			user = FactoryGirl.create(:user)
 			sign_in user
 
 			post :create, gram: { message: 'Hello!'}
@@ -50,11 +55,7 @@ RSpec.describe InstasController, type: :controller do
 		end
 
 		it "should properly deal with validation errors" do
-			user = User.create(
-				email: 	'fakeuser@gmail.com',
-				password: 	'secretPassword',
-				password_confirmation: 	'secretPassword'
-			)
+			user = FactoryGirl.create(:user)
 			sign_in user
 			
 			post :create, gram: { message: ''}
