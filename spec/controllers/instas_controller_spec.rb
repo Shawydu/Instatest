@@ -17,11 +17,17 @@ RSpec.describe InstasController, type: :controller do
 
 	describe "instas#create action" do
 		it "should successfully submit the new form" do
-			post :create, gram: {message: 'Hello!'}
+			post :create, gram: { message: 'Hello!'}
 			expect(response).to redirect_to root_path
 
 			gram = Gram.last
 			expect(gram.message).to eq("Hello!")
+		end
+
+		it "should properly deal with validation errors" do
+			post :create, gram: { message: ''}
+			expect(response).to have_http_status(:unprocessable_entity)
+			expect(Gram.count).to eq 0
 		end
 	end
 end

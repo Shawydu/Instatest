@@ -31,6 +31,8 @@ gem 'sprockets'
 
 # Add form by simple_form
 gem 'simple_form'
+# Add devise for users stuff
+gem 'devise'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
