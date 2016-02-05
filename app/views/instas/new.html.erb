@@ -1,6 +1,7 @@
 <h1>Add new Insta here!</h1>
 
-<%= simple_form_for @gram do |f| %>
+<%= simple_form_for @gram, url: instas_path do |f| %>
 	<%= f.input :message %>
-	<%= f.submit 'Post!' %>
+	<%= f.input :picture %>
+	<%= f.button :submit %>
 <% end -%>

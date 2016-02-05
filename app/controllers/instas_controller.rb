@@ -2,7 +2,7 @@ class InstasController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
 	def index
-		
+		@grams = Gram.all
 	end
 
 	def show
@@ -54,10 +54,10 @@ class InstasController < ApplicationController
 	private
 
 	def gram_params
-		params.require(:gram).permit(:message)
+		params.require(:gram).permit(:message, :picture)
 	end
 
-	def render_not_found(state=:not_found)
+	def render_not_found(state = :not_found)
 		render text: 'Not Found :((', status: state
 	end
 end
