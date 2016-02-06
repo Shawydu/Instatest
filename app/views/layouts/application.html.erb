@@ -3,18 +3,33 @@
 <head>
   <title>Instatest</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://www.google.com/fonts#UsePlace:use/Collection:Pacifico">
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,400italic' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="top-nav">
+	<div class="col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+		<%= link_to root_path do %>
+			<div class="brand pull-left">
+				Instatest
+			</div>
+		<% end -%>
+		<div class="add pull-right">
+			<% if current_user %>
+				Welcome, <%= current_user.email %>.
+				<%= link_to "New Insta", new_insta_path %>
+				<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+			<% else %>
+				<%= link_to "Sign in", new_user_session_path %>
+				<%= link_to "Sign up", new_user_registration_path %>
+			<% end -%>
+		</div>
+	</div>
+	<br class="clear">
+</div>
 
-<% if current_user %>
-	You're signed in as <%= current_user.email %>
-	<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-	<%= link_to "Sign in", new_user_session_path %>
-	<%= link_to "Sign up", new_user_registration_path %>
-<% end -%>
 <% if notice.present? %>
 	<p class="alert alert-info"><%= notice %></p>
 <% end -%>
